@@ -1,5 +1,9 @@
 <h1>profile</h1>
-<%= form_for :post, :url => {:action => 'edit'} do |f| %>
+<% flash.each do |key, value| %>
+  <h3><%= value %></h3>
+<% end %>
+
+<%= form_for :patch, :url => {:action => 'edit'}, method: :patch do |f| %>
   <p>
     <%= f.label :email, "mail" %><br>
     <%= @user.email %>

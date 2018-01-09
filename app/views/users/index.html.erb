@@ -1,2 +1,51 @@
-<h1>index</h1>
-<%= link_to "profile", "./profile" %>
+<nav class="navbar navbar-default">
+  <%= link_to "profile", "./profile", class: "navbar-brand" %>
+  <%= link_to "interview", "../interview", class: "navbar-brand" %>
+</nav>
+<h3>My Interviews</h3>
+<table border class="table table-hover">
+  <tr>
+    <th>To</th>
+    <th>Reservation Date</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  <% @my_interviews.each do |interview| %>
+  <tr>
+    <td><%= interview.user.name %></td>
+    <td><%= interview.reservation_date.strftime("%Y年%m月%d日　 %H:%M") %></td>
+    <td><%= interview.status %></td>
+    <td>
+      <%= form_for :patch, :url => {:controller => :interview, :action => 'delete'}, method: :patch do |f| %>
+        <%= f.hidden_field :id, :value => interview.id %>
+        <%= f.submit 'Delete', data: { confirm: "Delete OK？"}%>
+      <% end %>
+    </td>
+  <tr>
+<% end %>
+</table>
+
+<h3>Users</h3>
+<table border class="table table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Birthday</th>
+    <th>Sex</th>
+    <th>School</th>
+    <th></th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.birthday %></td>
+    <td><%= user.sex %></td>
+    <td><%= user.school %></td>
+    <td>
+      <%= link_to "make appointment", { :controller => :interview, :action => :new}, remote: true, class: "btn btn-xs btn-primary" %>
+      <div class="modal fade" id="new-modal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
+    </td>
+  <tr>
+<% end %>
+</table>

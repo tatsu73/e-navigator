@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <h3>Make Interview</h3>
+    <%= form_for :patch, :url => {:action => 'make'}, method: :patch do |f| %>
+    <p>
+      <%= f.label :recipient_id, "Receiver" %><br>
+      <%= f.collection_select :recipient_id, User.where.not(id: current_user.id), :id, :name %>
+    </p>
+    <p>
+      <%= f.label :reservation_date, "birthday" %><br>
+      <%= f.datetime_select :reservation_date %><br>
+    </p>
+    <p>
+      <input type="submit">
+    </p>
+    <% end %>
+  </div>
+</div>

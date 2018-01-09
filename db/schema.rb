@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171224135309) do
+ActiveRecord::Schema.define(version: 20180108051141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "interviews", force: :cascade do |t|
+    t.bigint "users_id"
+    t.datetime "reservation_date"
+    t.integer "status", limit: 2, default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "recipient_id"
+    t.index ["recipient_id"], name: "index_interviews_on_recipient_id"
+    t.index ["users_id"], name: "index_interviews_on_users_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,10 +41,12 @@ ActiveRecord::Schema.define(version: 20171224135309) do
     t.datetime "updated_at", null: false
     t.string "name", default: "no_name"
     t.date "birthday"
-    t.integer "sex", limit: 1, default: 0, null: false
+    t.integer "sex", limit: 2, default: 0, null: false
     t.string "school"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "interviews", "users", column: "recipient_id"
+  add_foreign_key "interviews", "users", column: "users_id"
 end

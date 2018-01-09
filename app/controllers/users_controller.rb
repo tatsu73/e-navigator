@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def index
     flash.discard(:success)
+    @my_interviews = Interview.joins(:user).where(users_id: current_user.id).where.not(status: 3)
+    @users = User.where.not(id: current_user.id)
   end
 
   def profile

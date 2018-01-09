@@ -3,5 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  enum sex: { other: 0, male: 1, famale: 2 }       
+  enum sex: { other: 0, male: 1, famale: 2 }
+  has_many :interview   
 end

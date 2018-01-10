@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default">
-  <%= link_to "home", "/", class: "navbar-brand" %>
-  <%= link_to "profile", "./profile", class: "navbar-brand" %>
+  <%= link_to "home", root_path, class: "navbar-brand" %>
+  <%= link_to "profile", profile_path, class: "navbar-brand" %>
 </nav>
 <h3>Interviews</h3>
 <table border class="table table-hover">
@@ -13,7 +13,7 @@
   <tr>
     <td><%= interview.user.name %></td>
     <td><%= interview.reservation_date.strftime("%Y年%m月%d日　 %H:%M") %></td>
-    <% if interview.status == 'pending' %>
+    <% if interview.pending? %>
       <td>
         <%= form_for :patch, :url => {:action => 'reply'}, method: :patch do |f| %>
           <%= f.hidden_field :id, :value => interview.id %>

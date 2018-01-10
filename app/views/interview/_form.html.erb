@@ -7,7 +7,7 @@
       <%= f.collection_select :recipient_id, User.where.not(id: current_user.id), :id, :name %>
     </p>
     <p>
-      <%= f.label :reservation_date, "birthday" %><br>
+      <%= f.label :reservation_date, "Reservation Date" %><br>
       <%= f.datetime_select :reservation_date %><br>
     </p>
     <p>

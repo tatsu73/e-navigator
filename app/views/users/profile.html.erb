@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default">
-  <%= link_to "home", "/", class: "navbar-brand" %>
-  <%= link_to "interview", "../interview", class: "navbar-brand" %>
+  <%= link_to "home", root_path, class: "navbar-brand" %>
+  <%= link_to "interview", interview_path, class: "navbar-brand" %>
 </nav>
 <h2>Profile</h2>
 <% flash.each do |key, value| %>

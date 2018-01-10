@@ -12,7 +12,7 @@
   </tr>
   <% @my_interviews.each do |interview| %>
   <tr>
-    <td><%= interview.user.name %></td>
+    <td><%= interview.recipient.name %></td>
     <td><%= interview.reservation_date.strftime("%Y年%m月%d日　 %H:%M") %></td>
     <td><%= interview.status %></td>
     <td>
